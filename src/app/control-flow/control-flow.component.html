@@ -1,0 +1,61 @@
+<div class="container">
+    <div class="row">
+        @for (item of products; track $index) {
+            <div class="col-lg-4">
+                <div class="card" >
+                    <img src="{{item.image}}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title">{{item.name}}
+
+                        @switch (badgeMsg) {
+
+                            @case ('1') {
+                                <span class="badge text-bg-primary">10 % off </span>
+                            }  @case ('2') {
+                                <span class="badge text-bg-secondary">20 % off </span>
+                            }
+                            @case ('3') {
+                                <span class="badge text-bg-warning">30 % off </span>
+                            }
+                            @default {
+                                <span class="badge text-bg-danger">SALE ENDED </span>
+                            }
+                        }
+                         <!-- <span class="badge text-bg-primary">{{badgeMsg}} -->
+                        
+                        <!-- </span> -->
+                        <span class="badge text-bg-secondary">{{name}}</span>
+                    </h5>
+                      <p class="card-text">{{item.description}}</p>
+                      @if (item.price >50) {
+
+                          <a href="#" class="btn btn-danger">Rs. {{item.price}} /=</a>
+                        }
+                        @else if (item.price == 50) {
+
+                            <a href="#" class="btn btn-warning">Rs. {{item.price}} /=</a>
+                        }
+                        @else{
+                            
+                            <a href="#" class="btn btn-success">Rs. {{item.price}} /=</a>
+                      }
+                    </div>
+                  </div>
+            </div>
+
+        }
+       
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+
+        <!-- two way databinding -->
+
+        <input [type]="badgeType"   [(ngModel)]="badgeMsg">
+        <input type="text" [(ngModel)]="name">
+    </div>
+</div>
+
+
